@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import UserInfo from 'components/UserInfo/UserInfo'
+import PlaceList from 'components/PlaceList/PlaceList'
+import { Switch, Route} from "react-router-dom";
+import LoginForm from "components/LoginForm/LoginForm"
+import Page404 from "components/Page404/Page404"
+import Map from "components/Map/Map";
+import 'scss/app.scss'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+        <Route path="/login">
+          <LoginForm/>
+        </Route>
+        <Route path={['/','/place/:id','/add']} exact>
+          <Map/>
+          <h1>Złomownik</h1>
+          <UserInfo/>
+          <PlaceList/>
+        </Route>
+        <Route component={Page404} />
+      </Switch>
     </div>
   );
 }
 
 export default App;
+    
