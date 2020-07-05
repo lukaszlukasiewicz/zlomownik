@@ -5,7 +5,9 @@ import { Switch, Route} from "react-router-dom";
 import LoginForm from "components/LoginForm/LoginForm"
 import Page404 from "components/Page404/Page404"
 import Map from "components/Map/Map";
+import Sidebar from "components/Sidebar/Sidebar"
 import 'scss/app.scss'
+
 
 function App() {
   return (
@@ -15,10 +17,14 @@ function App() {
           <LoginForm/>
         </Route>
         <Route path={['/','/place/:id','/add']} exact>
-          <Map/>
-          <h1>Złomownik</h1>
-          <UserInfo/>
-          <PlaceList/>
+          <div className="mainView">
+            <Map/>
+            <Sidebar>
+              <UserInfo/>
+              <PlaceList/>
+            </Sidebar>
+          </div>
+          
         </Route>
         <Route component={Page404} />
       </Switch>
