@@ -15,7 +15,7 @@ const  PlaceList = () => {
   return (
     <div>
       <input type="text" onChange={inputChange} />
-        {list.filter(place=>place.visible).map(place => <Card key={place.id}>{place.name}<br/><small>{place.address}</small></Card> )}
+        {list.filter(place=>place.visible).map(place => <Card image={place.image} key={place.id} title={place.name}><small>{place.address}</small></Card> )}
     </div>
   )
 }
