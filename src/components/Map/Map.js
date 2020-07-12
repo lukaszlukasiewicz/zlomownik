@@ -19,18 +19,23 @@ const Places = (props) => {
   const listeners = useRef(false)
 
   if(!props.map) return false;
-
+  
   //Save map instance to context
   if(!map.instance()) setTimeout(()=>{
     map.instance(props.map);
   },0);
 
-  //Save map center and zoom to context
   if(!listeners.current) {
+    //Save map center and zoom to context
     props.map.addListener('idle', ()=>{
       map.center(props.map.getCenter().toJSON());
       map.zoom(props.map.getZoom());
     });
+    //Revert saved map position and zoom
+    setTimeout(()=>{
+      props.map.setCenter(new window.google.maps.LatLng(map.center()));
+      props.map.setZoom(map.zoom());
+    },0)
     listeners.current = true;
   }
 
