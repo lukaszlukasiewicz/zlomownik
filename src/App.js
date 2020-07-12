@@ -18,9 +18,10 @@ function App() {
         </Route>
         <Route path={['/','/place/:id','/add']} exact>
           <div className={Styles.mainView}>
-            <Map/>
-            <Sidebar>
+            <Map>
               <UserInfo/>
+            </Map>
+            <Sidebar>
               <PlaceList/>
             </Sidebar>
           </div>

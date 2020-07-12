@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {AuthContext} from 'contexts/AuthContext'
 import { Link} from "react-router-dom";
-
+import Styles from "./UserInfo.module.scss"
 
 function User() {
 
@@ -9,7 +9,7 @@ function User() {
 
   const {name,id,email,loggedIn} = Auth.user
   if(loggedIn) return (
-    <div>
+    <div className={Styles.UserInfo}>
       user: {name} <br/>
       email: {email} <br/>
       id: {id} <br/>
@@ -17,7 +17,9 @@ function User() {
     </div>
   )
   else return(
-    <Link to="/login">Zaloguj</Link>
+    <div className={Styles.UserInfo}>
+      <Link to="/login">Zaloguj</Link>
+    </div>
   )
 }
 

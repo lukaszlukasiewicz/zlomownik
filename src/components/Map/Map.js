@@ -53,6 +53,7 @@ const Map = (props) => {
 
   return(
     <div className={styles.Map}>
+      {props.children}
       <Places map={map}/>
       <LoadScript
         libraries={libraries}
