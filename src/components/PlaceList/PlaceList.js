@@ -1,6 +1,8 @@
 import React, {useContext,useCallback} from 'react';
 import {PlacesContext} from 'contexts/PlacesContext';
 
+import Styles from './PlaceList.module.scss';
+
 import Card from 'components/UI/Card/Card';
 
 
@@ -13,9 +15,9 @@ const  PlaceList = () => {
   },[filter])
 
   return (
-    <div>
+    <div className={Styles.PlaceList}>
       <input type="text" onChange={inputChange} />
-        {list.filter(place=>place.visible).map(place => <Card key={place.id}>{place.name}<br/><small>{place.address}</small></Card> )}
+        {list.filter(place=>place.visible).map(place => <Card image={place.image} key={place.id} title={place.name}><small>{place.address}</small></Card> )}
     </div>
   )
 }

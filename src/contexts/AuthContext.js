@@ -9,6 +9,7 @@ const AuthProvider = ({children}) => {
   const login = () => {
     setUser({
       loggedIn: true,
+      image: 'https://avatars1.githubusercontent.com/u/4199014',
       name : 'Lukasz',
       email:'lukasz.lukasiewicz@gmail.com',
       id: 1,

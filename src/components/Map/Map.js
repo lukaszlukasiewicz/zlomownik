@@ -1,53 +1,18 @@
-import React, {useState,useContext, useRef} from 'react';
+import React, {useState,useContext} from 'react';
 import styles from "./Map.module.scss"
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import {PlacesContext} from 'contexts/PlacesContext';
-import {MapContext} from 'contexts/MapContext';
+
+import MapHelper from './MapHelper';
 
 
 const libraries = ['geometry']
-let centered = false;
 
 const Markers = () => {
   const places = useContext(PlacesContext);
   return places.list.filter(place=>place.visible && place.location.lat).map(place => <Marker position={place.location} key={place.id}/>)
 }
 
-const Places = (props) => {
-  const places = useContext(PlacesContext);
-  const map = useContext(MapContext);
-  const listeners = useRef(false)
-
-  if(!props.map) return false;
-  
-  //Save map instance to context
-  if(!map.instance()) setTimeout(()=>{
-    map.instance(props.map);
-  },0);
-
-  if(!listeners.current) {
-    //Save map center and zoom to context
-    props.map.addListener('idle', ()=>{
-      map.center(props.map.getCenter().toJSON());
-      map.zoom(props.map.getZoom());
-    });
-    //Revert saved map position and zoom
-    setTimeout(()=>{
-      props.map.setCenter(new window.google.maps.LatLng(map.center()));
-      props.map.setZoom(map.zoom());
-    },0)
-    listeners.current = true;
-  }
-
-  // Fit bounds on first render;
-  if(!centered && places.list.length) {
-    const bounds = new window.google.maps.LatLngBounds();
-    places.list.forEach(place => bounds.extend(place.location))
-    props.map.fitBounds(bounds);
-    centered = true;
-  }
-  return false;
-}
 
 
 const Map = (props) => {
@@ -58,7 +23,8 @@ const Map = (props) => {
 
   return(
     <div className={styles.Map}>
-      <Places map={map}/>
+      {props.children}
+      <MapHelper map={map}/>
       <LoadScript
         libraries={libraries}
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_KEY}
@@ -74,7 +40,6 @@ const Map = (props) => {
           <Markers/>
         </GoogleMap>
       </LoadScript>
-   
     </div>
   ) 
 

@@ -6,7 +6,7 @@ import LoginForm from "components/LoginForm/LoginForm"
 import Page404 from "components/Page404/Page404"
 import Map from "components/Map/Map";
 import Sidebar from "components/Sidebar/Sidebar"
-import 'scss/app.scss'
+import Styles from './scss/app.module.scss'
 
 
 function App() {
@@ -17,10 +17,11 @@ function App() {
           <LoginForm/>
         </Route>
         <Route path={['/','/place/:id','/add']} exact>
-          <div className="mainView">
-            <Map/>
-            <Sidebar>
+          <div className={Styles.mainView}>
+            <Map>
               <UserInfo/>
+            </Map>
+            <Sidebar>
               <PlaceList/>
             </Sidebar>
           </div>
