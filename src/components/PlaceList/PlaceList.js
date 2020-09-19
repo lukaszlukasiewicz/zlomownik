@@ -11,10 +11,12 @@ const  PlaceList = () => {
   const places = useContext(PlacesContext);
   const {list} = places;
 
-
   return (
     <div className={Styles.PlaceList}>
-        {list.filter(place=>place.visible).map(place => <Card image={place.image} key={place.id} title={place.name}><small>{place.address}</small></Card> )}
+        {list.filter(place=>place.visible).map(place => 
+          <Card image={place.image} key={place.id} title={place.name}>
+            <small>{place.address}</small>
+          </Card>)}
     </div>
   )
 }
