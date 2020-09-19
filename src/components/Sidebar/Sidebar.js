@@ -1,8 +1,9 @@
 import React from 'react'
+import Styles from './Sidebar.module.scss';
 
 const Sidebar = (props) => {
   return (
-    <div>
+    <div className={Styles.Sidebar}>
       {props.children}
     </div>
   )
