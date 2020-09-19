@@ -9,14 +9,14 @@ import Card from 'components/UI/Card/Card';
 const  PlaceList = () => {
 
   const places = useContext(PlacesContext);
-  const {filter,list} = places;
+  const {filter,list,searchString} = places;
   const inputChange = useCallback((e) => {
     filter({searchString:e.target.value});
   },[filter])
 
   return (
     <div className={Styles.PlaceList}>
-      <input type="text" onChange={inputChange} />
+      <input type="text" onChange={inputChange} value={searchString}/>
         {list.filter(place=>place.visible).map(place => <Card image={place.image} key={place.id} title={place.name}><small>{place.address}</small></Card> )}
     </div>
   )

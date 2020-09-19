@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
+import escapeRegex from 'utils/escapeRegex';
+
 
 export const PlacesContext = React.createContext();
 
@@ -16,6 +18,7 @@ function matchSearchString(place,searchString) {
 const PlacesProvider = ({children}) => {
 
   const [places,setPlaces] = useState([]);
+  const [queryString, setQueryString] = useState("");
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/places`)
@@ -29,8 +32,11 @@ const PlacesProvider = ({children}) => {
   },[]);
 
   const filterPlaces = ({bounds,searchString, types} = {}) => {
+
+    const cleansearchString = escapeRegex(searchString);
+    setQueryString(searchString);
     const filtered = places.map(place => {
-      const matchesString = matchSearchString(place, searchString);
+      const matchesString = matchSearchString(place, cleansearchString);
       const matchesType = types ? types.includes(place.type) : true;
       const visible = matchesString && matchesType;
       return Object.assign({},place, {visible});
@@ -40,7 +46,8 @@ const PlacesProvider = ({children}) => {
 
   return <PlacesContext.Provider value={{
     list:places,
-    filter:filterPlaces
+    filter:filterPlaces,
+    searchString:queryString,
   }}>{children}</PlacesContext.Provider>
 }
 
