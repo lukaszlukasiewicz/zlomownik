@@ -1,7 +1,10 @@
-import {useState,useEffect,useCallback} from 'react';
+import React, {useState,useEffect,useCallback} from 'react';
+
+const  MediaComponent = (props) =>  props.match ? props.children : null
+
 
 export default function (query = "" ) {
-  const [match, setMatch] = useState(false);
+  const [match, setMatch] = useState( window.matchMedia(query).matches);
   
   const matchQuery = useCallback(e => {
     const queryMatch = window.matchMedia(query);
@@ -14,5 +17,5 @@ export default function (query = "" ) {
       window.removeEventListener('resize', matchQuery);
     }
   },[matchQuery]);
-  return match;
+  return [match,MediaComponent];
 } 
