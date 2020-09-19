@@ -1,7 +1,8 @@
 import React from 'react';
 import UserInfo from 'components/UserInfo/UserInfo'
-import PlaceList from 'components/PlaceList/PlaceList'
 import { Switch, Route} from "react-router-dom";
+import PlaceList from 'components/PlaceList/PlaceList'
+import Searchbar from 'components/Searchbar/Searchbar'
 import LoginForm from "components/LoginForm/LoginForm"
 import Page404 from "components/Page404/Page404"
 import Map from "components/Map/Map";
@@ -22,6 +23,7 @@ function App() {
               <UserInfo/>
             </Map>
             <Sidebar>
+              <Searchbar/>
               <PlaceList/>
             </Sidebar>
           </div>
