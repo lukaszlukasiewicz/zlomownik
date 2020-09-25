@@ -12,7 +12,7 @@ import useMediaQuery from 'hooks/useMediaQuery';
 
 
 function App() {
-  const [isMobile,MediaQueryWraper] = useMediaQuery('(max-width:40em)');
+  const [isMobile,MobileView,DesktopView] = useMediaQuery('(max-width:40em)');
   return (
     <div className="App">
       <Switch>
@@ -20,21 +20,25 @@ function App() {
           <LoginForm/>
         </Route>
         <Route path={['/','/place/:id','/add']} exact>
-          <div className={Styles.mainView}>
-            <MediaQueryWraper match={!isMobile}>
-              <Map>
-                <UserInfo/>
-              </Map>
+          <div className={`${Styles.mainView} ${isMobile ? Styles.mobileView : Styles.desktopView}`}>
+            <MobileView>
+              <Searchbar/>
+            </MobileView>
+            <Map>
+              <UserInfo/>
+            </Map>
+              
+            <DesktopView>
               <Sidebar>
                 <Searchbar/>
                 <PlaceList/>
               </Sidebar>
-            </MediaQueryWraper>
+            </DesktopView>
 
-            <MediaQueryWraper match={isMobile}>
-                <Searchbar/>
+            <MobileView>
                 <PlaceList/>
-            </MediaQueryWraper>
+            </MobileView>
+
 
           </div>
           

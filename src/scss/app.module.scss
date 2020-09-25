@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 body {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
-html, body {
-  padding:0;
-  margin:0;
+html,
+body {
+  padding: 0;
+  margin: 0;
 }
 
 .App {
@@ -14,9 +15,20 @@ html, body {
 }
 
 .mainView {
-  display:grid;
+  position: relative;
+}
+
+.desktopView {
+  display: grid;
   grid-template-columns: 1fr 300px;
-  > div {
-    height:100vh;
+  @media screen and (min-width: 120em) {
+    grid-template-columns: 1fr 600px;
   }
+  > div {
+    height: 100vh;
+  }
+}
+
+.mobileView {
+  background: #f3f3f3;
 }
