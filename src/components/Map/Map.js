@@ -18,7 +18,7 @@ const Markers = () => {
 const Map = (props) => {
 
   const zoomPosition = (window.google && window.google.maps.ControlPosition.LEFT_BOTTOM) || null;
-  const typeControl = (window.google && window.google.maps.MapTypeControlStyle.DROPDOWN_MENU) || null
+  const typePosition = (window.google && window.google.maps.ControlPosition.TOP_CENTER ) || null
   const [map,setMap] = useState();
 
   return(
@@ -34,7 +34,7 @@ const Map = (props) => {
           center={{ lat:51, lng:13 }}
           zoom={10}
           onLoad={(map)=>setMap(map)}
-          options={{streetViewControlOptions:{position:zoomPosition},zoomControlOptions:{position:zoomPosition},mapTypeControlOptions:{style:typeControl} }}
+          options={{streetViewControlOptions:{position:zoomPosition},zoomControlOptions:{position:zoomPosition},mapTypeControlOptions:{position:typePosition} }}
           
         >
           <Markers/>
