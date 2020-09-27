@@ -3,7 +3,7 @@ import Styles from './Button.module.scss';
 
 const Button = (props = {}) => {
   return (
-    <button className={Styles.Button} onClick={props.onClick}>{props.children}</button>
+    <button className={`${Styles.Button} ${props.flat ? Styles.flat : ''}`} onClick={props.onClick}>{props.children}</button>
   )
 }
 

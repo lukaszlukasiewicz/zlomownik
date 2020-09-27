@@ -12,7 +12,7 @@ const ListToggle = props => {
   }
   return (
     
-    <Button onClick={handleClick}>
+    <Button onClick={handleClick} flat={true}>
       {listColapsed ? <Image style={{fontSize:"1.2em",margin:"0 -.08em"}}/> : <List />}
     </Button>
   )
@@ -31,7 +31,7 @@ const SearchBar = () => {
         <Search className="icon" color="#aaa"/>
         <input type="text" placeholder="Wyszukaj miejsce..." onChange={inputChange} value={searchString}/>
       </div>
-      <Button>
+      <Button flat={true}>
         <Filter  style={{fontSize:"0.8em"}}/>
       </Button>
       <ListToggle/>
