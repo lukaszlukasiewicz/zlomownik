@@ -5,6 +5,11 @@
   padding: 0.5em;
   background: #fff;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  gap: 0.2em;
+  button {
+    font-size: 1em;
+  }
 }
 
 .SearchInput {
@@ -13,6 +18,7 @@
   display: grid;
   grid-template-columns: auto 1fr auto;
   overflow: hidden;
+  width: 100%;
   align-items: center;
   input {
     border: 0;

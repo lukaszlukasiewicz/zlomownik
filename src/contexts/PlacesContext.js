@@ -19,6 +19,7 @@ const PlacesProvider = ({children}) => {
 
   const [places,setPlaces] = useState([]);
   const [queryString, setQueryString] = useState("");
+  const [listColapsed,setListColapsed] = useState(false)
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/places`)
@@ -48,6 +49,8 @@ const PlacesProvider = ({children}) => {
     list:places,
     filter:filterPlaces,
     searchString:queryString,
+    listColapsed,
+    setListColapsed,
   }}>{children}</PlacesContext.Provider>
 }
 
