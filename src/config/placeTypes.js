@@ -19,9 +19,9 @@ function getMarker(props = {}) {
   console.log(styles.Marker);
   this.marker =this.maker || (
     <div className={styles.Marker} style={{fontSize:'1.4em'}}>
-      <Marker style={{fontSize:'2em','position':'absolute','left':0,'zIndex':-1,'transform':'translate(-50%,-100%) skew(-40deg) scaleY(.4)',transformOrigin:'50% 100%',filter:'blur(3px)',opacity:.2}}></Marker>     
-      <Marker style={{fontSize:'2.5em','position':'absolute','left':0,'zIndex':0,'transform':'translate(-50%,-100%)',cursor:'pointer'}} color={this.color} onClick={props.onClick}></Marker>      
-      <div style={{fill:'#ffffff','transform':'translate(-50%,-165%)',pointerEvents:'none'}}>{this.icon}</div>
+      <Marker className={styles.Marker__shadow}></Marker>     
+      <Marker className={styles.Marker__icon} color={this.color} onClick={props.onClick}></Marker>      
+      <div  className={styles.Icon}>{this.icon}</div>
     </div>
   )
   return this.marker;
@@ -31,7 +31,7 @@ export const types = {
   camping: {
     text: "Camping",
     textMultiple: "Campingi",
-    icon: <Camping style={{ fill: "inherit" }} />,
+    icon: <Camping style={{ fill: "inherit",transform:'translateY(-.1em)'}} />,
     color: "#7f8fa6",
     getMarker,
   },

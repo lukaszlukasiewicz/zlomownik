@@ -5,7 +5,7 @@ const CardImage = (props) => {
 
   return (
     <div className={Styles.CardImage} style={{backgroundImage:`url(${props.imageUrl})`}}>
-        <div className={Styles.CardImage__title}><span>{props.title}</span></div>
+        <div className={Styles.CardImage__title}><h2>{props.title}</h2></div>
     </div>
   )
 }

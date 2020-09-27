@@ -8,3 +8,23 @@
     width: 600px;
   }
 }
+
+.PlaceCard__title {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+
+.PlaceCard__icon {
+  font-size: 1.5em;
+  margin-bottom: -0.2em;
+  margin-right: 0.5em;
+  border-right: 1px solid #eee;
+  padding-right: 0.5em;
+}
+
+.PlaceCard_address {
+  font-size: 0.8em;
+  line-height: 1.1;
+  color: #666;
+}
