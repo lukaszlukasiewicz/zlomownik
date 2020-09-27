@@ -31,7 +31,7 @@ export const types = {
   camping: {
     text: "Camping",
     textMultiple: "Campingi",
-    icon: <Camping style={{ fill: "inherit",transform:'translateY(-.1em)'}} />,
+    icon: <Camping style={{ fill: "inherit"}} />,
     color: "#7f8fa6",
     getMarker,
   },
