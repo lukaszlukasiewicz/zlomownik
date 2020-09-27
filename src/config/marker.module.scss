@@ -1,0 +1,9 @@
+.Marker {
+  font-size: 10em;
+  position: relative;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    transform: scale(1.2);
+    z-index: 999;
+  }
+}
