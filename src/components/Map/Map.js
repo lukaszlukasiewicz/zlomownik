@@ -40,7 +40,7 @@ const Map = (props) => {
           center={{ lat:51, lng:13 }}
           zoom={10}
           onLoad={(map)=>setMap(map)}
-          options={{streetViewControlOptions:{position:zoomPosition},zoomControlOptions:{position:zoomPosition},mapTypeControlOptions:{position:typePosition} }}
+          options={{streetViewControl:false,zoomControlOptions:{position:zoomPosition},mapTypeControlOptions:{position:typePosition} }}
           
         >
           <Markers/>
