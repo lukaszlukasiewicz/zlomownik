@@ -1,6 +1,7 @@
 .Marker {
   font-size: 10em;
   position: relative;
+  pointer-events: none;
   &:hover {
     z-index: 999;
     .Marker__icon {
@@ -30,8 +31,12 @@
   left: 0;
   z-index: 0;
   transform: translate(-50%, -100%);
-  cursor: pointer;
   transform-origin: center bottom;
+  pointer-events: none;
+  path {
+    cursor: pointer;
+    pointer-events: painted;
+  }
 }
 
 .Icon {
