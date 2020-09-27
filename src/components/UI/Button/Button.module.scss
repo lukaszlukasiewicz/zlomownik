@@ -1,0 +1,12 @@
+.Button {
+  border: solid 1px #ddd;
+  border-radius: 0.2em;
+  display: flex;
+  align-items: center;
+  padding: 0.5em 0.7em;
+  background: #fff;
+  gap: 0.5em;
+  svg {
+    fill: #999;
+  }
+}
