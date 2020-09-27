@@ -2,4 +2,27 @@
   z-index: 9999;
   position: sticky;
   top: 0;
+  padding: 0.5em;
+  background: #fff;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+}
+
+.SearchInput {
+  border: solid 1px #ddd;
+  border-radius: 0.3em;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  overflow: hidden;
+  align-items: center;
+  input {
+    border: 0;
+    padding: 0.8em;
+  }
+  :global .icon {
+    display: inline-block;
+    position: relative;
+    padding: 0 0.5em;
+    border-right: 1px solid #ddd;
+    height: 1.5em;
+  }
 }
