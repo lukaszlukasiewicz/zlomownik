@@ -36,7 +36,7 @@ const  PlaceList = () => {
   const {list,listColapsed} = places;
   return (
     <div className={`${Styles.PlaceList} ${listColapsed ? Styles.collapsed : ''}`}>
-        {list.filter(place=>place.visible).map(place => listColapsed ? <ColapsedCard place={place} /> :  <ExpandedCard place={place} />)}
+        {list.filter(place=>place.visible).map(place => listColapsed ? <ColapsedCard place={place} key={place.id} /> :  <ExpandedCard place={place}  key={place.id}/>)}
     </div>
   )
 }
