@@ -13,7 +13,7 @@ const ListToggle = props => {
   return (
     
     <Button onClick={handleClick} flat={true}>
-      {listColapsed ? <Image style={{fontSize:"1.2em",margin:"0 -.08em"}}/> : <List />}
+      {listColapsed ? <Image/> : <List />}
     </Button>
   )
 }
