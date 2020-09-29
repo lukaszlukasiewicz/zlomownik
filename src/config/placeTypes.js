@@ -9,20 +9,21 @@ import {
   FaShower as Shower,
   FaWalking as Walk,
   FaCarAlt as Car,
-  FaMapMarker as Marker,
 } from "react-icons/fa";
+import Marker from 'components/Marker/Marker'
 
-import styles from './marker.module.scss';
 
 
 function getMarker(props = {}) {
-  console.log(styles.Marker);
+  console.log(this.icon);
+  if(!props.style) props.style={};
+  props.style.fontSize = "1.4em";
   this.marker =this.maker || (
-    <div className={styles.Marker} style={{fontSize:'1.4em'}}>
-      <Marker className={styles.Marker__shadow}></Marker>     
-      <Marker className={styles.Marker__icon} color={this.color} onClick={props.onClick}></Marker>      
-      <div  className={styles.Icon}>{this.icon}</div>
-    </div>
+    <Marker {...props} color={this.color}>
+      <div style={{fill:'#ffffff'}}>
+        {this.icon}
+      </div>
+    </Marker>
   )
   return this.marker;
 }

@@ -1,8 +1,7 @@
 import React, {useState,useContext} from 'react';
 import styles from "./Map.module.scss"
-import { GoogleMap, LoadScript, OverlayView } from '@react-google-maps/api';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import {PlacesContext} from 'contexts/PlacesContext';
-
 import MapHelper from './MapHelper';
 import {types} from 'config/placeTypes';
 
@@ -10,16 +9,12 @@ const libraries = ['geometry']
 
 const Markers = () => {
   const places = useContext(PlacesContext);
-  return places.list.filter(place=>place.visible && place.location.lat).map(place => <TestMarker type={place.type} position={place.location} key={place.id}/>)
+  return places.list.filter(place=>place.visible && place.location.lat).map(place => { return types[place.type].getMarker({key:place.id,position:place.location,onClick:handleMarkerClick})})
 }
 
 function handleMarkerClick() {
   console.log("Marker clicked");
 }
-const TestMarker = (props) => {
-  return <OverlayView position={props.position} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>{types[props.type].getMarker({onClick:handleMarkerClick})}</OverlayView>
-}
-
 
 const Map = (props) => {
 
