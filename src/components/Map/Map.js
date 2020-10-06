@@ -5,7 +5,7 @@ import {PlacesContext} from 'contexts/PlacesContext';
 import MapHelper from './MapHelper';
 import {types} from 'config/placeTypes';
 
-const libraries = ['geometry']
+const libraries = ["geometry"];
 
 const Markers = () => {
   const places = useContext(PlacesContext);
@@ -13,27 +13,32 @@ const Markers = () => {
 }
 
 const Map = (props) => {
+  const zoomPosition =
+    (window.google && window.google.maps.ControlPosition.LEFT_BOTTOM) || null;
+  const typePosition =
+    (window.google && window.google.maps.ControlPosition.TOP_CENTER) || null;
+  const [map, setMap] = useState();
 
-  const zoomPosition = (window.google && window.google.maps.ControlPosition.LEFT_BOTTOM) || null;
-  const typePosition = (window.google && window.google.maps.ControlPosition.TOP_CENTER ) || null
-  const [map,setMap] = useState();
-
-  return(
+  return (
     <div className={`${styles.Map} ${props.className}`}>
       {props.children}
-      <MapHelper map={map}/>
+      <MapHelper map={map} />
       <LoadScript
         libraries={libraries}
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_KEY}
       >
         <GoogleMap
-          mapContainerStyle={{height:'100%'}}
-          center={{ lat:51, lng:13 }}
+          mapContainerStyle={{ height: "100%" }}
+          center={{ lat: 51, lng: 13 }}
           zoom={10}
-          onLoad={(map)=>setMap(map)}
-          options={{streetViewControl:false,zoomControlOptions:{position:zoomPosition},mapTypeControlOptions:{position:typePosition} }}
+          onLoad={(map) => setMap(map)}
+          options={{
+            streetViewControl: false,
+            zoomControlOptions: { position: zoomPosition },
+            mapTypeControlOptions: { position: typePosition },
+          }}
         >
-          <Markers/>
+          <Markers />
         </GoogleMap>
       </LoadScript>
     </div>
