@@ -15,13 +15,14 @@ import Marker from 'components/Marker/Marker'
 
 
 function getMarker(props = {}) {
-  console.log(this.icon);
   if(!props.style) props.style={};
-  props.style.fontSize = "1.4em";
+  props.style.transform = "scale(1.6)";
+  const iconStyle = {};
+  if(this.text === 'Camping') iconStyle.transform = "translateY(-.1em)"; 
   this.marker =this.maker || (
     <Marker {...props} color={this.color}>
       <div style={{fill:'#ffffff'}}>
-        {this.icon}
+        <div style={iconStyle}>{this.icon}</div>
       </div>
     </Marker>
   )

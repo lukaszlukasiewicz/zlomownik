@@ -9,11 +9,7 @@ const libraries = ['geometry']
 
 const Markers = () => {
   const places = useContext(PlacesContext);
-  return places.list.filter(place=>place.visible && place.location.lat).map(place => { return types[place.type].getMarker({key:place.id,position:place.location,onClick:handleMarkerClick})})
-}
-
-function handleMarkerClick() {
-  console.log("Marker clicked");
+  return places.list.filter(place=>place.visible && place.location.lat).map(place => { return types[place.type].getMarker({key:place.id,position:place.location})})
 }
 
 const Map = (props) => {
@@ -30,20 +26,17 @@ const Map = (props) => {
         libraries={libraries}
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_KEY}
       >
-      <GoogleMap
+        <GoogleMap
           mapContainerStyle={{height:'100%'}}
           center={{ lat:51, lng:13 }}
           zoom={10}
           onLoad={(map)=>setMap(map)}
           options={{streetViewControl:false,zoomControlOptions:{position:zoomPosition},mapTypeControlOptions:{position:typePosition} }}
-          
         >
           <Markers/>
         </GoogleMap>
       </LoadScript>
     </div>
   ) 
-
 }
-
 export default React.memo(Map);
