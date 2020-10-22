@@ -6,6 +6,7 @@ import Card from "components/UI/Card/Card";
 import { types } from "config/placeTypes";
 
 function isInBounds(location, bounds) {
+  if (!bounds) return true;
   const { lat, lng } = location;
   return (
     lat >= bounds.south &&
@@ -61,9 +62,13 @@ const PlaceList = () => {
 
   useEffect(() => {
     if (map.get()) {
-      map.get().addListener("idle", () => {
+      const listener = map.get().addListener("idle", () => {
         setBounds(map.get().getBounds().toJSON());
       });
+
+      return () => {
+        window.google.maps.event.removeListener(listener);
+      };
     }
   }, [map]);
 
