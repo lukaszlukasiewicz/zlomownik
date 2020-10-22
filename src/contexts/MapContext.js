@@ -1,29 +1,33 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 
 export const MapContext = React.createContext();
 
-const MapProvider = ({children}) => {
-  const [map,setMap] = useState(null);
-  const [mapCenter,setMapCenter] = useState({ lat:51, lng:13 })
-  const [mapZoom,setMapZoom] = useState(10);
+const MapProvider = ({ children }) => {
+  const [map, setMap] = useState(null);
 
-  const instance = (instance) => {
-    if(instance) setMap(instance);
-    return instance || map;
-  }
+  const set = (map) => {
+    setMap(map);
+  };
+
+  const get = () => {
+    return map;
+  };
 
   const center = (center = undefined) => {
-    if(!center) return mapCenter;
-    if(JSON.stringify(center) !== JSON.stringify(mapCenter)) setMapCenter(center);
-  }
+    if (!center) return map.getCenter();
+    map.setCenter(center);
+  };
 
   const zoom = (zoom = undefined) => {
-    if(zoom) setMapZoom(zoom);
-    return zoom || mapZoom;
-  }
+    if (zoom) return map.getZoom();
+    map.setZoom(zoom);
+  };
 
-  return <MapContext.Provider value={{instance,center,zoom}}>{children}</MapContext.Provider>
-}
+  return (
+    <MapContext.Provider value={{ get, set, center, zoom }}>
+      {children}
+    </MapContext.Provider>
+  );
+};
 
 export default MapProvider;
-
