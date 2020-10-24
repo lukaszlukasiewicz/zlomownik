@@ -22,6 +22,7 @@ const ExpandedCard = (props = {}) => {
       image={props.place.image}
       key={props.place.id}
       title={props.place.name}
+      className={Styles.Card__expanded}
     >
       <div className={Styles.PlaceCard__title}>
         <div
@@ -38,7 +39,7 @@ const ExpandedCard = (props = {}) => {
 
 const ColapsedCard = (props = {}) => {
   return (
-    <Card key={props.place.id}>
+    <Card key={props.place.id} className={Styles.Card__colapsed}>
       <div className={Styles.PlaceCard__title}>
         <div
           className={Styles.PlaceCard__icon}

@@ -18,6 +18,9 @@
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
+  width: 300px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .PlaceCard__icon {
@@ -32,4 +35,10 @@
   font-size: 0.8em;
   line-height: 1.1;
   color: #666;
+}
+
+.Card__colapsed {
+  .PlaceCard__title {
+    width: 400px;
+  }
 }
