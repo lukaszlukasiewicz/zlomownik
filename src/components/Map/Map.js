@@ -9,10 +9,6 @@ const libraries = ["geometry"];
 
 const Markers = () => {
   const places = useContext(PlacesContext);
-  const map = useContext(MapContext);
-  if (map.get()) {
-    console.log(map.get().getBounds());
-  }
   return places.list
     .filter((place) => place.visible)
     .map((place) => {
@@ -33,7 +29,6 @@ const Map = (props) => {
 
   return (
     <div className={`${styles.Map} ${props.className}`}>
-      {props.children}
       <LoadScript
         libraries={libraries}
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_KEY}
@@ -42,16 +37,14 @@ const Map = (props) => {
           mapContainerStyle={{ height: "100%" }}
           center={{ lat: 51, lng: 13 }}
           zoom={10}
-          onLoad={(map) => {
-            set(map);
-            console.log(props);
-          }}
+          onLoad={(map) => set(map)}
           options={{
             streetViewControl: false,
             zoomControlOptions: { position: zoomPosition },
             mapTypeControlOptions: { position: typePosition },
           }}
         >
+          {props.children}
           <Markers />
         </GoogleMap>
       </LoadScript>
