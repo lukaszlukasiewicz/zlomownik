@@ -5,6 +5,8 @@ import Styles from "./PlaceList.module.scss";
 import Card from "components/UI/Card/Card";
 import { types } from "config/placeTypes";
 
+let fitBoundsOnStart = true;
+
 function isInBounds(location, bounds) {
   if (!bounds) return true;
   const { lat, lng } = location;
@@ -64,14 +66,35 @@ const PlaceList = () => {
   useEffect(() => {
     if (map.get()) {
       const listener = map.get().addListener("idle", () => {
-        setBounds(map.get().getBounds().toJSON());
+        const bounds = map.get().getBounds();
+        if (bounds) setBounds(bounds.toJSON());
+        places.saveMapPosition();
       });
-
       return () => {
         window.google.maps.event.removeListener(listener);
       };
     }
-  }, [map]);
+  }, [map, places]);
+
+  useEffect(() => {
+    const { center, zoom } = places.mapPosition;
+    if (JSON.stringify(center) !== JSON.stringify(map.center()))
+      map.center(center);
+    if (zoom !== map.zoom()) map.zoom(zoom);
+  }, [map, places.mapPosition]);
+
+  useEffect(() => {
+    console.log("fitbounds effect");
+    console.log(places.list);
+    if (map.get() && places.list.length && fitBoundsOnStart) {
+      const bounds = new window.google.maps.LatLngBounds();
+      places.list.forEach((place) => {
+        bounds.extend(place.location);
+      });
+      map.get().fitBounds(bounds);
+      fitBoundsOnStart = false;
+    }
+  }, [map, places.list]);
 
   const { list, listColapsed } = places; //TODO: Use local storage
   return (

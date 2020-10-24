@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { types } from "config/placeTypes";
 import escapeRegex from "utils/escapeRegex";
+import { MapContext } from "contexts/MapContext";
 
 export const PlacesContext = React.createContext();
 
@@ -10,13 +11,19 @@ function matchSearchString(place, searchString) {
   const { name, address } = place;
   if (name.match(regexp)) return true;
   if (address.match(regexp)) return true;
-  if (address.match(regexp)) return true;
   return false;
 }
 
 const PlacesProvider = ({ children }) => {
   const [places, setPlaces] = useState([]);
   const [listColapsed, setListColapsed] = useState(false);
+  const [mapPosition, setMapPosition] = useState({
+    center: { lat: 51, lng: 13 },
+    zoom: 5,
+  });
+
+  const map = useContext(MapContext);
+
   const [filter, setFilter] = useState({
     types: Object.keys(types),
     searchString: "",
@@ -52,6 +59,13 @@ const PlacesProvider = ({ children }) => {
     setFilter(updatedFilter);
   };
 
+  const saveMapPosition = () => {
+    const mapInstance = map.get();
+    const center = mapInstance.getCenter().toJSON();
+    const zoom = mapInstance.getZoom();
+    setMapPosition({ center, zoom });
+  };
+
   return (
     <PlacesContext.Provider
       value={{
@@ -60,6 +74,8 @@ const PlacesProvider = ({ children }) => {
         searchString: filter.searchString,
         listColapsed,
         setListColapsed,
+        mapPosition,
+        saveMapPosition,
       }}
     >
       {children}

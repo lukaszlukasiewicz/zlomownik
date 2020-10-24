@@ -51,4 +51,4 @@ const Map = (props) => {
     </div>
   );
 };
-export default React.memo(Map);
+export default React.memo(Map, () => true);

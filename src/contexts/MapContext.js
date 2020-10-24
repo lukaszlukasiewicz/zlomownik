@@ -14,12 +14,14 @@ const MapProvider = ({ children }) => {
   };
 
   const center = (center = undefined) => {
+    if (!map) return false;
     if (!center) return map.getCenter();
     map.setCenter(center);
   };
 
   const zoom = (zoom = undefined) => {
-    if (zoom) return map.getZoom();
+    if (!map) return false;
+    if (!zoom) return map.getZoom();
     map.setZoom(zoom);
   };
 
