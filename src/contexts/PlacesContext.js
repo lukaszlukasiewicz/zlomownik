@@ -23,9 +23,14 @@ const PlacesProvider = ({ children }) => {
   });
 
   const [listType, setListType] = useLocalStorage("listType");
+  const [mapFilter, setMapFilter] = useLocalStorage("listType");
 
   const toggleListType = () => {
     setListType(1 === +listType ? 0 : 1);
+  };
+
+  const toggleMapFilter = () => {
+    setMapFilter(1 === +mapFilter ? 0 : 1);
   };
 
   const map = useContext(MapContext);
@@ -82,6 +87,8 @@ const PlacesProvider = ({ children }) => {
         saveMapPosition,
         toggleListType,
         listType: parseInt(listType),
+        toggleMapFilter,
+        mapFilter: parseInt(mapFilter),
       }}
     >
       {children}

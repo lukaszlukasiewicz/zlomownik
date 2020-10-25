@@ -94,13 +94,14 @@ const PlaceList = () => {
     }
   }, [map, places.list]);
 
-  const { list, listType } = places; //TODO: Use local storage
+  const { list, listType } = places;
+  const { mapFilter } = useContext(PlacesContext);
   return (
     <div className={`${Styles.PlaceList} ${!listType ? Styles.collapsed : ""}`}>
       {list
         .filter((place) => {
           const inBounds = isInBounds(place.location, bounds);
-          return place.visible && inBounds;
+          return place.visible && (!mapFilter || inBounds);
         })
         .map((place) =>
           listType ? (

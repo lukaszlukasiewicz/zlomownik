@@ -21,6 +21,18 @@ const ListToggle = (props) => {
   );
 };
 
+const MapFilterToggle = (props) => {
+  const { toggleMapFilter } = useContext(PlacesContext);
+  const handleClick = () => {
+    toggleMapFilter();
+  };
+  return (
+    <Button onClick={handleClick} flat={true}>
+      <Filter style={{ fontSize: "0.8em" }} />
+    </Button>
+  );
+};
+
 const SearchBar = () => {
   const places = useContext(PlacesContext);
   const { filter, searchString } = places;
@@ -42,9 +54,7 @@ const SearchBar = () => {
           value={searchString}
         />
       </div>
-      <Button flat={true}>
-        <Filter style={{ fontSize: "0.8em" }} />
-      </Button>
+      <MapFilterToggle />
       <ListToggle />
     </div>
   );
