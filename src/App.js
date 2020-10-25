@@ -1,47 +1,54 @@
-import React from 'react';
-import UserInfo from 'components/UserInfo/UserInfo'
-import { Switch, Route} from "react-router-dom";
-import PlaceList from 'components/PlaceList/PlaceList'
-import Searchbar from 'components/Searchbar/Searchbar'
-import LoginForm from "components/LoginForm/LoginForm"
-import Page404 from "components/Page404/Page404"
+import React from "react";
+import UserInfo from "components/UserInfo/UserInfo";
+import { Switch, Route } from "react-router-dom";
+import PlaceList from "components/PlaceList/PlaceList";
+import Searchbar from "components/Searchbar/Searchbar";
+import LoginForm from "components/LoginForm/LoginForm";
+import Page404 from "components/Page404/Page404";
 import Map from "components/Map/Map";
-import Sidebar from "components/Sidebar/Sidebar"
-import Styles from './scss/app.module.scss'
-import useMediaQuery from 'hooks/useMediaQuery';
-
+import Sidebar from "components/Sidebar/Sidebar";
+import Styles from "./scss/app.module.scss";
+import useMediaQuery from "hooks/useMediaQuery";
 
 function App() {
-  const [isMobile,MobileView,DesktopView] = useMediaQuery('(max-width:40em)');
+  const [isMobile, MobileView, DesktopView] = useMediaQuery("(max-width:40em)");
   return (
     <div className="App">
       <Switch>
         <Route path="/login">
-          <LoginForm/>
+          <LoginForm />
         </Route>
-        <Route path={['/','/place/:id','/add']} exact>
-          <div className={`${Styles.mainView} ${isMobile ? Styles.mobileView : Styles.desktopView}`}>
+        <Route path={["/", "/place/:id", "/add"]} exact>
+          <div
+            className={`${Styles.mainView} ${
+              isMobile ? Styles.mobileView : Styles.desktopView
+            }`}
+          >
             <MobileView>
-              <Searchbar/>
+              <Searchbar />
             </MobileView>
             <Map>
-              <UserInfo/>
+              <UserInfo
+                style={{
+                  position: "absolute",
+                  right: "4em",
+                  top: "0.6em",
+                  zIndex: 2,
+                }}
+              />
             </Map>
-              
+
             <DesktopView>
               <Sidebar>
-                <Searchbar/>
-                <PlaceList/>
+                <Searchbar />
+                <PlaceList />
               </Sidebar>
             </DesktopView>
 
             <MobileView>
-                <PlaceList/>
+              <PlaceList />
             </MobileView>
-
-
           </div>
-          
         </Route>
         <Route component={Page404} />
       </Switch>
@@ -50,4 +57,3 @@ function App() {
 }
 
 export default App;
-    
