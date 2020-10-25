@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { types } from "config/placeTypes";
 import escapeRegex from "utils/escapeRegex";
 import { MapContext } from "contexts/MapContext";
+import useLocalStorage from "hooks/useLocalStorage";
 
 export const PlacesContext = React.createContext();
 
@@ -16,11 +17,16 @@ function matchSearchString(place, searchString) {
 
 const PlacesProvider = ({ children }) => {
   const [places, setPlaces] = useState([]);
-  const [listColapsed, setListColapsed] = useState(false);
   const [mapPosition, setMapPosition] = useState({
     center: { lat: 51, lng: 13 },
     zoom: 5,
   });
+
+  const [listType, setListType] = useLocalStorage("listType");
+
+  const toggleListType = () => {
+    setListType(1 === +listType ? 0 : 1);
+  };
 
   const map = useContext(MapContext);
 
@@ -72,10 +78,10 @@ const PlacesProvider = ({ children }) => {
         list: places,
         filter: filterPlaces,
         searchString: filter.searchString,
-        listColapsed,
-        setListColapsed,
         mapPosition,
         saveMapPosition,
+        toggleListType,
+        listType: parseInt(listType),
       }}
     >
       {children}

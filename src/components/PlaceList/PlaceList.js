@@ -84,8 +84,6 @@ const PlaceList = () => {
   }, [map, places.mapPosition]);
 
   useEffect(() => {
-    console.log("fitbounds effect");
-    console.log(places.list);
     if (map.get() && places.list.length && fitBoundsOnStart) {
       const bounds = new window.google.maps.LatLngBounds();
       places.list.forEach((place) => {
@@ -96,21 +94,19 @@ const PlaceList = () => {
     }
   }, [map, places.list]);
 
-  const { list, listColapsed } = places; //TODO: Use local storage
+  const { list, listType } = places; //TODO: Use local storage
   return (
-    <div
-      className={`${Styles.PlaceList} ${listColapsed ? Styles.collapsed : ""}`}
-    >
+    <div className={`${Styles.PlaceList} ${!listType ? Styles.collapsed : ""}`}>
       {list
         .filter((place) => {
           const inBounds = isInBounds(place.location, bounds);
           return place.visible && inBounds;
         })
         .map((place) =>
-          listColapsed ? (
-            <ColapsedCard place={place} key={place.id} />
-          ) : (
+          listType ? (
             <ExpandedCard place={place} key={place.id} />
+          ) : (
+            <ColapsedCard place={place} key={place.id} />
           )
         )}
     </div>
