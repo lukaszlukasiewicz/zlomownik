@@ -2,8 +2,8 @@ import React, { useContext, useCallback } from "react";
 import { PlacesContext } from "contexts/PlacesContext";
 import Styles from "./Searchbar.module.scss";
 import {
-  FaFilter as Filter,
-  FaList as List,
+  FaSlidersH as Filter,
+  FaRegListAlt as List,
   FaRegImage as Image,
   FaSearch as Search,
 } from "react-icons/fa";
@@ -16,7 +16,11 @@ const ListToggle = (props) => {
   };
   return (
     <Button onClick={handleClick} flat={true}>
-      {listType ? <List /> : <Image />}
+      {listType ? (
+        <List style={{ fontSize: "1.2em" }} />
+      ) : (
+        <Image style={{ fontSize: "1.2em" }} />
+      )}
     </Button>
   );
 };
@@ -28,7 +32,7 @@ const MapFilterToggle = (props) => {
   };
   return (
     <Button onClick={handleClick} flat={true}>
-      <Filter style={{ fontSize: "0.8em" }} />
+      <Filter style={{ fontSize: "1.2em" }} />
     </Button>
   );
 };
@@ -46,7 +50,7 @@ const SearchBar = () => {
   return (
     <div className={`${Styles.Searchbar}`}>
       <div className={Styles.SearchInput}>
-        <Search className="icon" color="#aaa" />
+        <Search className="icon" color="#666" />
         <input
           type="text"
           placeholder="Wyszukaj miejsce..."
