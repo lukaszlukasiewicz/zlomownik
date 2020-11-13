@@ -4,17 +4,18 @@
   top: 0;
   padding: 0.5em;
   background: #fff;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
   display: flex;
   gap: 0.2em;
+  padding-top: 1em;
   font-size: 1em;
+  background-color: inherit;
   button {
     font-size: 1em;
+    background-color: inherit;
   }
 }
 
 .SearchInput {
-  border-radius: 0.3em;
   display: grid;
   grid-template-columns: auto 1fr auto;
   overflow: hidden;
@@ -25,8 +26,10 @@
     padding: 0.8em;
     font-size: 1em;
     font-weight: 300;
+    background-color: inherit;
+    border-radius: 0.3em;
     &:focus {
-      background: #f4f4f4;
+      background: #e9e9e9;
       outline: 0;
     }
   }
@@ -34,7 +37,6 @@
     display: inline-block;
     position: relative;
     padding: 0 0.7em 0 0.5em;
-    border-right: 1px solid #ddd;
     height: 1.5em;
   }
   &:focus {
