@@ -10,6 +10,10 @@
   font-size: 1em;
   background-color: inherit;
   font-size: 1em;
+  > div {
+    display: grid;
+    align-items: center;
+  }
   button {
     font-size: 1em;
     background-color: inherit;
@@ -19,7 +23,6 @@
 .SearchInput {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  overflow: hidden;
   width: 100%;
   align-items: center;
   input {
@@ -30,7 +33,8 @@
     background-color: inherit;
     border-radius: 0.3em;
     &:focus {
-      background: #e9e9e9;
+      background: #fff;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
       outline: 0;
     }
   }
@@ -39,8 +43,5 @@
     position: relative;
     padding: 0 0.7em 0 0.5em;
     height: 1.5em;
-  }
-  &:focus {
-    background: red;
   }
 }

@@ -1,6 +1,7 @@
 import React, { useContext, useCallback } from "react";
 import { PlacesContext } from "contexts/PlacesContext";
 import Styles from "./Searchbar.module.scss";
+import PopMenu from "components/UI/PopMenu/PopMenu";
 import {
   FaSlidersH as Filter,
   FaRegListAlt as List,
@@ -37,6 +38,19 @@ const MapFilterToggle = (props) => {
   );
 };
 
+const MapFilterMenu = (props) => {
+  const button = (
+    <Button flat={true}>
+      <Filter style={{ fontSize: "1.2em" }} />
+    </Button>
+  );
+  return (
+    <PopMenu component={button}>
+      <div>Testmenuy</div>
+    </PopMenu>
+  );
+};
+
 const SearchBar = () => {
   const places = useContext(PlacesContext);
   const { filter, searchString } = places;
@@ -58,7 +72,7 @@ const SearchBar = () => {
           value={searchString}
         />
       </div>
-      <MapFilterToggle />
+      <MapFilterMenu />
       <ListToggle />
     </div>
   );
