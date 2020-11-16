@@ -2,6 +2,7 @@ import React, { useContext, useCallback } from "react";
 import { PlacesContext } from "contexts/PlacesContext";
 import Styles from "./Searchbar.module.scss";
 import PopMenu from "components/UI/PopMenu/PopMenu";
+import Toggle from "components/UI/Toggle/Toggle";
 import {
   FaSlidersH as Filter,
   FaRegListAlt as List,
@@ -26,19 +27,8 @@ const ListToggle = (props) => {
   );
 };
 
-const MapFilterToggle = (props) => {
-  const { toggleMapFilter } = useContext(PlacesContext);
-  const handleClick = () => {
-    toggleMapFilter();
-  };
-  return (
-    <Button onClick={handleClick} flat={true}>
-      <Filter style={{ fontSize: "1.2em" }} />
-    </Button>
-  );
-};
-
 const MapFilterMenu = (props) => {
+  const { mapFilter, toggleMapFilter } = useContext(PlacesContext);
   const button = (
     <Button flat={true}>
       <Filter style={{ fontSize: "1.2em" }} />
@@ -46,7 +36,11 @@ const MapFilterMenu = (props) => {
   );
   return (
     <PopMenu component={button}>
-      <div>Testmenuy</div>
+      <Toggle
+        state={mapFilter}
+        onChange={toggleMapFilter}
+        label="Filtruj po mapie"
+      />
     </PopMenu>
   );
 };
