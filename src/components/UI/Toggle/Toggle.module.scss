@@ -1,0 +1,30 @@
+.Toggle {
+  align-items: center;
+  white-space: nowrap;
+  display: flex;
+  cursor: pointer;
+  .Toggle__switch {
+    background: rgba(100, 100, 100, 0.2);
+    border: solid 3px transparent;
+    display: block;
+    border-radius: 1em;
+    margin-bottom: -2px;
+    flex-grow: 0;
+    width: 1.75em;
+    margin-right: 0.5em;
+    > div {
+      width: 1em;
+      height: 1em;
+      background: #3498db;
+      margin: 0 auto 0 0;
+      border-radius: 1em;
+      transition: all 0.3s;
+    }
+    &.Toggle__on {
+      > div {
+        transform: translateX(0.75em);
+        background: #2ecc71;
+      }
+    }
+  }
+}
