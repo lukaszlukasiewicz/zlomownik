@@ -12,18 +12,19 @@
     flex-grow: 0;
     width: 1.75em;
     margin-right: 0.5em;
+    transition: all 0.3s;
     > div {
       width: 1em;
       height: 1em;
-      background: #3498db;
       margin: 0 auto 0 0;
       border-radius: 1em;
+      background: #fff;
       transition: all 0.3s;
     }
     &.Toggle__on {
+      background: #2ecc71;
       > div {
         transform: translateX(0.75em);
-        background: #2ecc71;
       }
     }
   }
