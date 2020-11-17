@@ -3,7 +3,7 @@
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   display: grid;
   gap: 1.5em;
-  padding: 0.5em;
+  padding: 0.5em 0.5em 1em 0.5em;
   @media (min-width: 120em) {
     width: 600px;
   }
@@ -40,5 +40,30 @@
 .Card__colapsed {
   .PlaceCard__title {
     width: 400px;
+  }
+  .PlaceCard_address {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.Card__expanded,
+.Card__colapsed {
+  transition: all 0.3s;
+  a {
+    box-sizing: border-box;
+    color: inherit;
+    padding: 1em;
+    margin: -1em;
+    text-decoration: none;
+  }
+  &:hover {
+    box-shadow: 0 0 0 3px #66adda;
+  }
+}
+.Card__expanded {
+  a {
+    display: block;
   }
 }

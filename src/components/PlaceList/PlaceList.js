@@ -2,8 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { PlacesContext } from "contexts/PlacesContext";
 import { MapContext } from "contexts/MapContext";
 import Styles from "./PlaceList.module.scss";
-import Card from "components/UI/Card/Card";
+import Card, { CardImage } from "components/UI/Card/Card";
 import { types } from "config/placeTypes";
+import { Link } from "react-router-dom";
 
 let fitBoundsOnStart = true;
 
@@ -21,20 +22,22 @@ function isInBounds(location, bounds) {
 const ExpandedCard = (props = {}) => {
   return (
     <Card
-      image={props.place.image}
       key={props.place.id}
       title={props.place.name}
       className={Styles.Card__expanded}
     >
-      <div className={Styles.PlaceCard__title}>
-        <div
-          className={Styles.PlaceCard__icon}
-          style={{ fill: types[props.place.type].color }}
-        >
-          {types[props.place.type].icon}
+      <Link to={`/place/${props.place.id}`}>
+        <CardImage title={props.place.name} image={props.place.image} />
+        <div className={Styles.PlaceCard__title}>
+          <div
+            className={Styles.PlaceCard__icon}
+            style={{ fill: types[props.place.type].color }}
+          >
+            {types[props.place.type].icon}
+          </div>
+          <div className={Styles.PlaceCard_address}>{props.place.address}</div>
         </div>
-        <div className={Styles.PlaceCard_address}>{props.place.address}</div>
-      </div>
+      </Link>
     </Card>
   );
 };
@@ -42,7 +45,7 @@ const ExpandedCard = (props = {}) => {
 const ColapsedCard = (props = {}) => {
   return (
     <Card key={props.place.id} className={Styles.Card__colapsed}>
-      <div className={Styles.PlaceCard__title}>
+      <Link to={`/place/${props.place.id}`} className={Styles.PlaceCard__title}>
         <div
           className={Styles.PlaceCard__icon}
           style={{ fill: types[props.place.type].color }}
@@ -53,7 +56,7 @@ const ColapsedCard = (props = {}) => {
           <h2 style={{ margin: 0, fontSize: "1.1em" }}>{props.place.name}</h2>
           {props.place.address}
         </div>
-      </div>
+      </Link>
     </Card>
   );
 };
