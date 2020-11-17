@@ -15,4 +15,13 @@
   &.flat {
     border: 0;
   }
+  &:disabled {
+    opacity: 0.5;
+    filter: grayscale(1);
+    cursor: auto;
+  }
+  &.Button--off {
+    opacity: 0.5;
+    filter: grayscale(1);
+  }
 }
