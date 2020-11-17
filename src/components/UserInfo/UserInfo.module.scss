@@ -2,19 +2,29 @@
   border-radius: 100em;
   color: #909cb6;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  width: 1.8em;
-  height: 1.8em;
+  width: 2.2em;
+  height: 2.2em;
   font-size: 1.5em;
   line-height: 2;
   text-align: center;
   background: #fff;
   overflow: hidden;
-  display: block;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
   border: 0;
+  box-sizing: border-box;
+  svg {
+    width: 1.2em;
+    height: 1.2em;
+    margin-top: -0.1em;
+    display: block;
+  }
 }
 
 .UserImage {
-  width: 100%;
+  width: 2.2em;
   height: 100%;
   background-size: cover;
 }
