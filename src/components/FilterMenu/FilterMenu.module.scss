@@ -1,0 +1,29 @@
+.FilterMenu {
+  display: grid;
+  gap: 0.5em;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 1em;
+  button {
+    padding: 0;
+    height: 100%;
+    position: relative;
+    padding-top: 100%;
+  }
+  svg {
+    font-size: 1.5em;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.35em;
+    box-sizing: border-box;
+  }
+}
+
+.FilterOptions {
+  font-size: 0.8em;
+  padding: 1em;
+  background: #f4f4f4;
+}
