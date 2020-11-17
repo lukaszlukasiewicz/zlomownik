@@ -23,8 +23,6 @@ const Map = (props) => {
   console.log("map render");
   const zoomPosition =
     (window.google && window.google.maps.ControlPosition.LEFT_BOTTOM) || null;
-  const typePosition =
-    (window.google && window.google.maps.ControlPosition.TOP_CENTER) || null;
   const { set } = useContext(MapContext);
 
   return (
