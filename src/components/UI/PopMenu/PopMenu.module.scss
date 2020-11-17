@@ -1,10 +1,11 @@
 .PopMenu {
   position: absolute;
-  top: calc(100% + 5px);
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
   border-radius: 0.2em;
+  z-index: 10;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   &:before {
     content: "";
