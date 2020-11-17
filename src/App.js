@@ -28,8 +28,8 @@ function App() {
               <UserInfo
                 style={{
                   position: "absolute",
-                  right: "4em",
-                  top: "0.6em",
+                  right: "1em",
+                  top: "1em",
                   zIndex: 2,
                 }}
               />

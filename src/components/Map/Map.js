@@ -40,8 +40,9 @@ const Map = (props) => {
           onLoad={(map) => set(map)}
           options={{
             streetViewControl: false,
+            fullscreenControl: false,
             zoomControlOptions: { position: zoomPosition },
-            mapTypeControlOptions: { position: typePosition },
+            mapTypeControl: false,
           }}
         >
           {props.children}
