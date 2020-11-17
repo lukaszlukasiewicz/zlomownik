@@ -10,7 +10,7 @@ const libraries = ["geometry"];
 const Markers = () => {
   const places = useContext(PlacesContext);
   return places.list
-    .filter((place) => place.visible)
+    .filter((place) => place.visible && places.typeFilter.includes(place.type))
     .map((place) => {
       return types[place.type].getMarker({
         key: place.id,
