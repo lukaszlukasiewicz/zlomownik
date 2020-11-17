@@ -23,7 +23,25 @@ const PlacesProvider = ({ children }) => {
   });
 
   const [listType, setListType] = useLocalStorage("listType");
-  const [mapFilter, setMapFilter] = useLocalStorage("listType");
+  const [mapFilter, setMapFilter] = useLocalStorage("mapFilter");
+
+  const [typeFilter, setTypeFilter] = useLocalStorage(
+    "typEFilter",
+    JSON.stringify(Object.keys(types))
+  );
+
+  const filterTypes = (types = []) => {
+    setTypeFilter(types);
+  };
+
+  const toggleTypeFilter = (type = "") => {
+    const newTypeFilter = JSON.parse(typeFilter);
+    console.log(newTypeFilter);
+    if (typeFilter.includes(type))
+      newTypeFilter.splice(newTypeFilter.indexOf(type), 1);
+    else newTypeFilter.push(type);
+    setTypeFilter(JSON.stringify(newTypeFilter));
+  };
 
   const toggleListType = () => {
     setListType(1 === +listType ? 0 : 1);
@@ -89,6 +107,9 @@ const PlacesProvider = ({ children }) => {
         listType: parseInt(listType),
         toggleMapFilter,
         mapFilter: parseInt(mapFilter),
+        typeFilter: JSON.parse(typeFilter),
+        setTypeFilter: filterTypes,
+        toggleTypeFilter,
       }}
     >
       {children}
