@@ -15,10 +15,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/login">
-          <LoginForm />
-        </Route>
-        <Route path={["/", "/place/:id", "/add"]} exact>
+        <Route path={["/", "/place/:id", "/add", "/login"]} exact>
           <div
             className={`${Styles.mainView} ${
               isMobile ? Styles.mobileView : Styles.desktopView
@@ -40,8 +37,13 @@ function App() {
 
             <DesktopView>
               <Sidebar>
-                <Searchbar />
-                <PlaceList />
+                <Route path={["/"]} exact>
+                  <Searchbar />
+                  <PlaceList />
+                </Route>
+                <Route path={["/login"]} exact>
+                  <LoginForm />
+                </Route>
               </Sidebar>
             </DesktopView>
 
