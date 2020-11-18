@@ -63,6 +63,7 @@ const ColapsedCard = (props = {}) => {
 
 const PlaceList = () => {
   const places = useContext(PlacesContext);
+  const { mapFilter, typeFilter, list, listType } = places;
   const map = useContext(MapContext);
   const [bounds, setBounds] = useState();
 
@@ -97,8 +98,6 @@ const PlaceList = () => {
     }
   }, [map, places.list]);
 
-  const { list, listType } = places;
-  const { mapFilter, typeFilter } = useContext(PlacesContext);
   return (
     <div className={`${Styles.PlaceList} ${!listType ? Styles.collapsed : ""}`}>
       {list
