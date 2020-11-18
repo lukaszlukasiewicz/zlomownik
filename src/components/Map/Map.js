@@ -4,10 +4,12 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { PlacesContext } from "contexts/PlacesContext";
 import { MapContext } from "contexts/MapContext";
 import { types } from "config/placeTypes";
+import { Switch, Route, useHistory } from "react-router-dom";
 
 const libraries = ["geometry"];
 
 const Markers = () => {
+  const history = useHistory();
   const places = useContext(PlacesContext);
   return places.list
     .filter((place) => place.visible && places.typeFilter.includes(place.type))
@@ -15,6 +17,9 @@ const Markers = () => {
       return types[place.type].getMarker({
         key: place.id,
         position: place.location,
+        onClick: (e) => {
+          history.push(`/place/${place.id}/`);
+        },
       });
     });
 };
@@ -44,7 +49,11 @@ const Map = (props) => {
           }}
         >
           {props.children}
-          <Markers />
+          <Switch>
+            <Route path={["/"]} exact>
+              <Markers />
+            </Route>
+          </Switch>
         </GoogleMap>
       </LoadScript>
     </div>
