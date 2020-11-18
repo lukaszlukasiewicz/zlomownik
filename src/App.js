@@ -9,6 +9,7 @@ import Map from "components/Map/Map";
 import Sidebar from "components/Sidebar/Sidebar";
 import Styles from "./scss/app.module.scss";
 import useMediaQuery from "hooks/useMediaQuery";
+import PlaceInfo from "components/PlaceInfo/PlaceInfo";
 
 function App() {
   const [isMobile, MobileView, DesktopView] = useMediaQuery("(max-width:40em)");
@@ -40,6 +41,9 @@ function App() {
                 <Route path={["/"]} exact>
                   <Searchbar />
                   <PlaceList />
+                </Route>
+                <Route path={["/place/:id"]} exact>
+                  <PlaceInfo />
                 </Route>
                 <Route path={["/login"]} exact>
                   <LoginForm />
