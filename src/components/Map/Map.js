@@ -4,7 +4,7 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { PlacesContext } from "contexts/PlacesContext";
 import { MapContext } from "contexts/MapContext";
 import { types } from "config/placeTypes";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route, useHistory, useParams } from "react-router-dom";
 
 const libraries = ["geometry"];
 
@@ -22,6 +22,20 @@ const Markers = () => {
         },
       });
     });
+};
+
+const PlaceMarker = (props) => {
+  const { list } = useContext(PlacesContext);
+  const { center, zoom } = useContext(MapContext);
+  const { id } = useParams();
+  const place = list.find((place) => place.id === id);
+  if (!place) return false;
+  center(place.location);
+  zoom(12);
+  return types[place.type].getMarker({
+    key: place.id,
+    position: place.location,
+  });
 };
 
 const Map = (props) => {
@@ -52,6 +66,10 @@ const Map = (props) => {
           <Switch>
             <Route path={["/"]} exact>
               <Markers />
+            </Route>
+
+            <Route path={["/place/:id"]} exact>
+              <PlaceMarker />
             </Route>
           </Switch>
         </GoogleMap>
