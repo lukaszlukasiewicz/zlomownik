@@ -1,0 +1,29 @@
+.PlaceInfo {
+  padding: 1em;
+  .PlaceInfo__gallery {
+    width: 100%;
+    min-width: 40em;
+    border-radius: 0.2em;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    .PlaceInfo__image {
+      width: 100%;
+      padding-top: 60%;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+  .PlaceInfo__name {
+    margin-bottom: 0;
+    font-weight: normal;
+  }
+
+  .PlaceInfo__address {
+    margin: 0;
+  }
+  .PlaceInfo__location {
+    margin-top: 0;
+    font-style: italic;
+    font-size: 0.9em;
+  }
+}
