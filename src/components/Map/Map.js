@@ -31,7 +31,7 @@ const PlaceMarker = (props) => {
   const place = list.find((place) => place.id === id);
   if (!place) return false;
   center(place.location);
-  zoom(12);
+  zoom(15);
   return types[place.type].getMarker({
     key: place.id,
     position: place.location,
