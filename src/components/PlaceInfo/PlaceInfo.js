@@ -1,16 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { PlacesContext } from "contexts/PlacesContext";
 import Styles from "./PlaceInfo.module.scss";
+import usePlace from "hooks/usePlace";
 
 export default (props) => {
-  const { list } = useContext(PlacesContext);
   const { id } = useParams();
-  const place = list.find((place) => place.id === id);
+  const place = usePlace(id);
   const history = useHistory();
-  console.log(place);
   if (!place) return false;
-  console.log(place.location);
+  console.log(place.description, place);
   return (
     <div className={Styles.PlaceInfo}>
       <div>
@@ -27,6 +25,7 @@ export default (props) => {
       <p
         className={Styles.PlaceInfo__location}
       >{`GPS: ${place.location.lat} ${place.location.lng}`}</p>
+      {place.description && <div>{place.description}</div>}
     </div>
   );
 };
