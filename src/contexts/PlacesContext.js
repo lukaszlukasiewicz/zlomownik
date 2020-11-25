@@ -30,8 +30,29 @@ const PlacesProvider = ({ children }) => {
     JSON.stringify(Object.keys(types))
   );
 
-  const filterTypes = (types = []) => {
-    setTypeFilter(types);
+  const loadPlace = (placeID) => {
+    let index = false;
+    const place = places.find((place, currentindex) => {
+      if (place.id === placeID) {
+        index = currentindex;
+        return true;
+      }
+    });
+
+    if (place && !place.loaded) {
+      const placeEndpoint = `${process.env.REACT_APP_API_URL}/places/${placeID}`;
+      fetch(placeEndpoint)
+        .then((data) => data.json())
+        .then((placeData) => {
+          const updatedPlaceData = Object.assign({}, place, placeData, {
+            loaded: true,
+          });
+          const updatedList = [...places];
+          updatedList[index] = updatedPlaceData;
+          setPlaces(updatedList);
+        });
+    }
+    return place;
   };
 
   const toggleTypeFilter = (type = "") => {
@@ -104,11 +125,11 @@ const PlacesProvider = ({ children }) => {
         mapPosition,
         saveMapPosition,
         toggleListType,
+        loadPlace,
         listType: parseInt(listType),
         toggleMapFilter,
         mapFilter: parseInt(mapFilter),
         typeFilter: JSON.parse(typeFilter),
-        setTypeFilter: filterTypes,
         toggleTypeFilter,
       }}
     >
