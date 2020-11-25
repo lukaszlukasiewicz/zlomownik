@@ -12,7 +12,7 @@ export default (props) => {
   return (
     <div className={Styles.PlaceInfo}>
       <div>
-        <button onClick={(e) => history.goBack()}>Wróć</button>
+        <button onClick={(e) => history.push("/")}>Wróć do listy</button>
       </div>
       <div className={Styles.PlaceInfo__gallery}>
         <div
