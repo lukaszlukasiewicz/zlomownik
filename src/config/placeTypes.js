@@ -9,23 +9,22 @@ import {
   FaShower as Shower,
   FaWalking as Walk,
   FaCarAlt as Car,
+  FaCamera as Camera,
 } from "react-icons/fa";
-import Marker from 'components/Marker/Marker'
-
-
+import Marker from "components/Marker/Marker";
 
 function getMarker(props = {}) {
-  if(!props.style) props.style={};
+  if (!props.style) props.style = {};
   props.style.transform = "scale(1.6)";
   const iconStyle = {};
-  if(this.text === 'Camping') iconStyle.transform = "translateY(-.1em)"; 
-  this.marker =this.maker || (
+  if (this.text === "Camping") iconStyle.transform = "translateY(-.1em)";
+  this.marker = this.maker || (
     <Marker {...props} color={this.color}>
-      <div style={{fill:'#ffffff'}}>
+      <div style={{ fill: "#ffffff" }}>
         <div style={iconStyle}>{this.icon}</div>
       </div>
     </Marker>
-  )
+  );
   return this.marker;
 }
 
@@ -33,7 +32,7 @@ export const types = {
   camping: {
     text: "Camping",
     textMultiple: "Campingi",
-    icon: <Camping style={{ fill: "inherit"}} />,
+    icon: <Camping style={{ fill: "inherit" }} />,
     color: "#7f8fa6",
     getMarker,
   },
@@ -75,14 +74,14 @@ export const types = {
   food: {
     text: "Jedzenie i picie",
     textMultiple: "Jedenie i picie",
-    icon: <Food style={{ fill: "inherit" }} />,
+    icon: <Food style={{ fill: "inherit", marginTop: "-.1em" }} />,
     color: "#e55039",
     getMarker,
   },
-  shower: {
-    text: "Prysznic",
-    textMultiple: "Prysznice",
-    icon: <Shower style={{ fill: "inherit" }} />,
+  photospot: {
+    text: "Photospot",
+    textMultiple: "Photospot",
+    icon: <Camera style={{ fill: "inherit" }} />,
     color: "#0abde3",
     getMarker,
   },
@@ -92,5 +91,5 @@ export const types = {
     icon: <Car style={{ fill: "inherit" }} />,
     color: "#38ada9",
     getMarker,
-  }
+  },
 };
