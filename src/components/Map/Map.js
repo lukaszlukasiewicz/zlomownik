@@ -6,6 +6,7 @@ import { MapContext } from "contexts/MapContext";
 import { types } from "config/placeTypes";
 import { Switch, Route, useHistory, useParams } from "react-router-dom";
 import Marker from "components/Marker/Marker";
+import MapRoute from "components/Route/Route";
 
 const libraries = ["geometry"];
 
@@ -50,6 +51,9 @@ const PlaceMarker = (props) => {
         key: place.id,
         position: place.location,
       })}
+      {place.path && (
+        <MapRoute path={place.path} color={types[place.type].color} />
+      )}
       {place.points &&
         place.points.map((point, index) => (
           <Marker
