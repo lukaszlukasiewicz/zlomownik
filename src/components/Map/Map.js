@@ -5,6 +5,7 @@ import { PlacesContext } from "contexts/PlacesContext";
 import { MapContext } from "contexts/MapContext";
 import { types } from "config/placeTypes";
 import { Switch, Route, useHistory, useParams } from "react-router-dom";
+import Marker from "components/Marker/Marker";
 
 const libraries = ["geometry"];
 
@@ -26,16 +27,49 @@ const Markers = () => {
 
 const PlaceMarker = (props) => {
   const { list } = useContext(PlacesContext);
-  const { center, zoom } = useContext(MapContext);
+  const { get, center, zoom } = useContext(MapContext);
   const { id } = useParams();
   const place = list.find((place) => place.id === id);
   if (!place) return false;
   center(place.location);
   zoom(15);
-  return types[place.type].getMarker({
-    key: place.id,
-    position: place.location,
-  });
+
+  if (get() && place.points) {
+    const boundsPoints = [
+      place.location,
+      ...place.points.map((point) => point.location),
+    ];
+    const bounds = new window.google.maps.LatLngBounds();
+    boundsPoints.forEach((point) => bounds.extend(point));
+    console.log(get());
+    get().fitBounds(bounds);
+  }
+  return (
+    <>
+      {types[place.type].getMarker({
+        key: place.id,
+        position: place.location,
+      })}
+      {place.points &&
+        place.points.map((point, index) => (
+          <Marker
+            position={point.location}
+            color={types[place.type].color}
+            style={{ fontSize: "1.3em" }}
+          >
+            <span
+              style={{
+                color: "#fff",
+                fontWeight: "bold",
+                fontSize: "1.4em",
+                transform: "translateY(.3em)",
+                display: "inline-block",
+              }}
+            ></span>
+          </Marker>
+        ))}
+    </>
+  );
 };
 
 const Map = (props) => {
