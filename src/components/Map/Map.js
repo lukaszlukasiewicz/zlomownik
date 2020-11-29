@@ -84,34 +84,29 @@ const Map = (props) => {
 
   return (
     <div className={`${styles.Map} ${props.className}`}>
-      <LoadScript
-        libraries={libraries}
-        googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_KEY}
+      <GoogleMap
+        mapContainerStyle={{ height: "100%" }}
+        center={{ lat: 51, lng: 13 }}
+        zoom={10}
+        onLoad={(map) => set(map)}
+        options={{
+          streetViewControl: false,
+          fullscreenControl: false,
+          zoomControlOptions: { position: zoomPosition },
+          mapTypeControl: false,
+        }}
       >
-        <GoogleMap
-          mapContainerStyle={{ height: "100%" }}
-          center={{ lat: 51, lng: 13 }}
-          zoom={10}
-          onLoad={(map) => set(map)}
-          options={{
-            streetViewControl: false,
-            fullscreenControl: false,
-            zoomControlOptions: { position: zoomPosition },
-            mapTypeControl: false,
-          }}
-        >
-          {props.children}
-          <Switch>
-            <Route path={["/"]} exact>
-              <Markers />
-            </Route>
+        {props.children}
+        <Switch>
+          <Route path={["/"]} exact>
+            <Markers />
+          </Route>
 
-            <Route path={["/place/:id"]} exact>
-              <PlaceMarker />
-            </Route>
-          </Switch>
-        </GoogleMap>
-      </LoadScript>
+          <Route path={["/place/:id"]} exact>
+            <PlaceMarker />
+          </Route>
+        </Switch>
+      </GoogleMap>
     </div>
   );
 };

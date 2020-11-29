@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { LoadScript } from "@react-google-maps/api";
+const libraries = ["geometry"];
 
 export const MapContext = React.createContext();
 
@@ -27,7 +29,12 @@ const MapProvider = ({ children }) => {
 
   return (
     <MapContext.Provider value={{ get, set, center, zoom }}>
-      {children}
+      <LoadScript
+        libraries={libraries}
+        googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_KEY}
+      >
+        {children}
+      </LoadScript>
     </MapContext.Provider>
   );
 };
