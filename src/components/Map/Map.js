@@ -7,6 +7,7 @@ import { types } from "config/placeTypes";
 import { Switch, Route, useHistory, useParams } from "react-router-dom";
 import Marker from "components/Marker/Marker";
 import MapRoute from "components/Route/Route";
+import { ReactComponent as FinishIcon } from "imges/finish.svg";
 
 const libraries = ["geometry"];
 
@@ -61,15 +62,23 @@ const PlaceMarker = (props) => {
             color={types[place.type].color}
             style={{ fontSize: "1.3em" }}
           >
-            <span
-              style={{
-                color: "#fff",
-                fontWeight: "bold",
-                fontSize: "1.4em",
-                transform: "translateY(.3em)",
-                display: "inline-block",
-              }}
-            ></span>
+            {index == place.points.length - 1 ? (
+              <FinishIcon
+                style={{ width: "1.4em", height: "1em", fill: "#fff" }}
+              />
+            ) : (
+              <span
+                style={{
+                  color: "#fff",
+                  fontWeight: "bold",
+                  fontSize: "1.4em",
+                  transform: "translateY(.3em)",
+                  display: "inline-block",
+                }}
+              >
+                {index + 1}
+              </span>
+            )}
           </Marker>
         ))}
     </>
