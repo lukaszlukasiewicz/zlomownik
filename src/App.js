@@ -16,6 +16,9 @@ function App() {
   return (
     <div className="App">
       <Switch>
+        <Route path={["/login"]} exact>
+          <LoginForm />
+        </Route>
         <Route path={["/", "/place/:id", "/add", "/login"]} exact>
           <div
             className={`${Styles.mainView} ${
@@ -44,9 +47,6 @@ function App() {
                 </Route>
                 <Route path={["/place/:id"]} exact>
                   <PlaceInfo />
-                </Route>
-                <Route path={["/login"]} exact>
-                  <LoginForm />
                 </Route>
               </Sidebar>
             </DesktopView>
