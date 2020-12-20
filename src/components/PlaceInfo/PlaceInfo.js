@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Styles from "./PlaceInfo.module.scss";
+import ExpandablePanel from "components/UI/ExpandablePanel/ExpandablePanel";
 import usePlace from "hooks/usePlace";
 
 export default (props) => {
@@ -8,7 +9,6 @@ export default (props) => {
   const place = usePlace(id);
   const history = useHistory();
   if (!place) return false;
-  console.log(place.description, place);
   return (
     <div className={Styles.PlaceInfo}>
       <div>
@@ -25,7 +25,9 @@ export default (props) => {
       <p
         className={Styles.PlaceInfo__location}
       >{`GPS: ${place.location.lat} ${place.location.lng}`}</p>
-      {place.description && <div>{place.description}</div>}
+      <ExpandablePanel>
+        {place.description && place.description}
+      </ExpandablePanel>
     </div>
   );
 };
